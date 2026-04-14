@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AKSHITHA CHAPALAMADUGU — UI/UX Designer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #0e0e0e;
+  --white: #f7f5f0;
+  --cream: #f0ede6;
+  --muted: #8a8680;
+  --accent: #c8602a;
+  --accent-light: #f2e8e0;
+  --border: rgba(14,14,14,0.1);
+  --serif: 'DM Serif Display', serif;
+  --sans: 'DM Sans', sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--sans); background: var(--white); color: var(--black); font-size: 16px; line-height: 1.7; overflow-x: hidden; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.25rem 3rem;
+  background: rgba(247,245,240,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 0.5px solid var(--border);
+}
+.nav-logo { font-family: var(--serif); font-size: 1.2rem; color: var(--black); text-decoration: none; letter-spacing: -0.01em; }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a { font-size: 13px; font-weight: 500; color: var(--muted); text-decoration: none; letter-spacing: 0.04em; text-transform: uppercase; transition: color 0.2s; }
+.nav-links a:hover, .nav-links a.active { color: var(--black); }
+.nav-cta { font-size: 13px; font-weight: 500; padding: 8px 20px; background: var(--black); color: var(--white); border-radius: 99px; text-decoration: none; transition: background 0.2s; }
+.nav-cta:hover { background: var(--accent); }
+
+/* ── PAGES ── */
+.page { display: none; min-height: 100vh; padding-top: 80px; }
+.page.active { display: block; }
+
+/* ── HOME ── */
+#home { padding-top: 0; }
+.hero {
+  min-height: 100vh; display: grid; grid-template-columns: 1fr 1fr;
+  align-items: center; padding: 0 3rem; gap: 4rem;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; top: -20%; right: -10%;
+  width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(200,96,42,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-left { padding-top: 80px; }
+.hero-eyebrow { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 10px; }
+.hero-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--accent); display: inline-block; }
+.hero-headline { font-family: var(--serif); font-size: clamp(3rem, 5vw, 4.5rem); line-height: 1.1; color: var(--black); margin-bottom: 1.5rem; letter-spacing: -0.02em; }
+.hero-headline em { font-style: italic; color: var(--accent); }
+.hero-sub { font-size: 17px; color: var(--muted); max-width: 440px; margin-bottom: 2.5rem; line-height: 1.7; }
+.hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn-primary { padding: 14px 28px; background: var(--black); color: var(--white); border-radius: 99px; text-decoration: none; font-size: 14px; font-weight: 500; transition: all 0.2s; }
+.btn-primary:hover { background: var(--accent); transform: translateY(-1px); }
+.btn-secondary { padding: 14px 28px; border: 1px solid var(--border); color: var(--black); border-radius: 99px; text-decoration: none; font-size: 14px; font-weight: 500; transition: all 0.2s; }
+.btn-secondary:hover { border-color: var(--black); transform: translateY(-1px); }
+.hero-right { display: flex; flex-direction: column; gap: 16px; padding-top: 80px; }
+.hero-card {
+  background: var(--cream); border-radius: 16px; padding: 1.5rem;
+  border: 0.5px solid var(--border); cursor: pointer; transition: all 0.2s;
+  text-decoration: none; display: block; color: inherit;
+}
+.hero-card:hover { transform: translateX(6px); border-color: var(--accent); }
+.hero-card-label { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.hero-card-title { font-family: var(--serif); font-size: 1.15rem; color: var(--black); }
+.hero-card-meta { font-size: 12px; color: var(--muted); margin-top: 6px; }
+.hero-card-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 10px; }
+.mini-tag { font-size: 10px; padding: 3px 8px; background: white; border-radius: 4px; color: var(--muted); border: 0.5px solid var(--border); }
+.hero-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); border: 0.5px solid var(--border); border-radius: 12px; overflow: hidden; margin-top: 1rem; }
+.stat-item { background: var(--cream); padding: 1rem; text-align: center; }
+.stat-n { font-family: var(--serif); font-size: 2rem; color: var(--black); }
+.stat-l { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+
+/* ── SECTION SHARED ── */
+.section { max-width: 900px; margin: 0 auto; padding: 5rem 2rem; }
+.section-header { margin-bottom: 3rem; }
+.section-eyebrow { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem; }
+.section-title { font-family: var(--serif); font-size: clamp(2rem, 4vw, 2.8rem); line-height: 1.15; color: var(--black); }
+.section-sub { font-size: 16px; color: var(--muted); margin-top: 0.75rem; max-width: 540px; }
+
+/* ── CASE STUDIES ── */
+.cases-grid { display: flex; flex-direction: column; gap: 2rem; }
+.case-item {
+  display: grid; grid-template-columns: 280px 1fr;
+  background: var(--cream); border-radius: 20px;
+  border: 0.5px solid var(--border); overflow: hidden; cursor: pointer;
+  text-decoration: none; color: inherit; transition: all 0.25s;
+}
+.case-item:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+.case-thumb {
+  display: flex; align-items: center; justify-content: center;
+  min-height: 220px; padding: 2rem; position: relative; overflow: hidden;
+}
+.case-thumb.blue { background: #dce8f5; }
+.case-thumb.pink { background: #f5e0e8; }
+.case-thumb.green { background: #d8ede5; }
+.thumb-mockup {
+  width: 110px; background: white; border-radius: 10px;
+  padding: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  display: flex; flex-direction: column; gap: 6px;
+}
+.thumb-bar { height: 7px; border-radius: 3px; }
+.thumb-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+.thumb-block { height: 24px; border-radius: 5px; }
+.case-info { padding: 2rem 2rem 2rem 1.75rem; display: flex; flex-direction: column; justify-content: space-between; border-left: 0.5px solid var(--border); }
+.case-company { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+.case-name { font-family: var(--serif); font-size: 1.4rem; color: var(--black); margin-bottom: 0.5rem; line-height: 1.25; }
+.case-desc { font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 1rem; }
+.case-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.ctag { font-size: 11px; padding: 4px 10px; border-radius: 4px; font-weight: 500; }
+.ctag.w { background: #dce8f5; color: #1a4a7a; }
+.ctag.r { background: #d8ede5; color: #1a5a3a; }
+.ctag.p { background: #ebe8f5; color: #3a2a7a; }
+.ctag.b { background: #f5e8e0; color: #7a3a1a; }
+.ctag.s { background: #d8ede5; color: #1a5a3a; }
+.case-arrow { font-size: 13px; color: var(--muted); margin-top: 1rem; }
+
+/* ── CASE DETAIL ── */
+#case-detail { display: none; }
+#case-detail.active { display: block; }
+.case-detail-inner { max-width: 860px; margin: 0 auto; padding: 3rem 2rem 5rem; }
+.back-btn { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); text-decoration: none; margin-bottom: 2rem; cursor: pointer; transition: color 0.2s; }
+.back-btn:hover { color: var(--black); }
+.detail-hero-badge { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+.detail-title { font-family: var(--serif); font-size: clamp(2rem, 4vw, 3rem); color: var(--black); margin-bottom: 1rem; line-height: 1.15; }
+.detail-meta { display: flex; gap: 2rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+.detail-meta-item { font-size: 13px; color: var(--muted); }
+.detail-meta-item strong { color: var(--black); font-weight: 500; display: block; margin-bottom: 2px; }
+.detail-cover { width: 100%; height: 340px; border-radius: 16px; margin-bottom: 3rem; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.detail-cover.blue { background: linear-gradient(135deg, #dce8f5 0%, #b8d0ec 100%); }
+.detail-cover.pink { background: linear-gradient(135deg, #f5e0e8 0%, #ecc0d0 100%); }
+.detail-cover.green { background: linear-gradient(135deg, #d8ede5 0%, #b0d8c8 100%); }
+.detail-screens { display: flex; gap: 16px; }
+.screen { background: white; border-radius: 10px; padding: 12px; box-shadow: 0 8px 30px rgba(0,0,0,0.1); display: flex; flex-direction: column; gap: 7px; }
+.screen-bar { height: 7px; border-radius: 3px; }
+.screen-row { display: flex; gap: 5px; }
+.screen-block { height: 28px; border-radius: 5px; flex: 1; }
+.detail-section { margin-bottom: 2.5rem; }
+.detail-section h3 { font-family: var(--serif); font-size: 1.3rem; color: var(--black); margin-bottom: 0.75rem; }
+.detail-section p { font-size: 15px; color: var(--muted); line-height: 1.8; }
+.detail-highlights { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 1.5rem 0; }
+.highlight { background: var(--cream); border-radius: 10px; padding: 1.25rem; border: 0.5px solid var(--border); }
+.highlight-num { font-family: var(--serif); font-size: 2rem; color: var(--accent); }
+.highlight-label { font-size: 13px; color: var(--muted); margin-top: 2px; }
+.detail-pages { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 1.5rem 0; }
+.dpage { background: var(--cream); border-radius: 10px; padding: 1rem 1.25rem; border: 0.5px solid var(--border); font-size: 14px; font-weight: 500; color: var(--black); display: flex; align-items: center; gap: 10px; }
+.dpage::before { content: '→'; color: var(--accent); }
+
+/* ── ABOUT ── */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+.about-photo { width: 100%; aspect-ratio: 3/4; background: var(--cream); border-radius: 20px; border: 0.5px solid var(--border); display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; }
+.about-photo-inner { width: 120px; height: 120px; border-radius: 50%; background: linear-gradient(135deg, #dce8f5, #ecc0d0); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 3rem; color: var(--black); }
+.about-text h2 { font-family: var(--serif); font-size: 2.2rem; color: var(--black); margin-bottom: 1.25rem; line-height: 1.2; }
+.about-text p { font-size: 15px; color: var(--muted); line-height: 1.8; margin-bottom: 1rem; }
+.timeline { margin-top: 2.5rem; }
+.timeline-item { padding: 1.25rem 0; border-top: 0.5px solid var(--border); display: grid; grid-template-columns: 100px 1fr; gap: 1rem; }
+.timeline-year { font-size: 12px; color: var(--muted); padding-top: 3px; }
+.timeline-info h4 { font-weight: 500; font-size: 15px; color: var(--black); margin-bottom: 2px; }
+.timeline-info p { font-size: 13px; color: var(--muted); }
+.skills-section { margin-top: 3rem; padding-top: 3rem; border-top: 0.5px solid var(--border); }
+.skills-title { font-family: var(--serif); font-size: 1.5rem; margin-bottom: 1.5rem; }
+.skills-list { display: flex; flex-wrap: wrap; gap: 8px; }
+.skill-pill { padding: 8px 16px; background: var(--cream); border: 0.5px solid var(--border); border-radius: 99px; font-size: 13px; color: var(--black); }
+
+/* ── BLOG ── */
+.blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.5rem; }
+.blog-card { background: var(--cream); border-radius: 16px; overflow: hidden; border: 0.5px solid var(--border); cursor: pointer; transition: all 0.2s; text-decoration: none; color: inherit; display: block; }
+.blog-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08); }
+.blog-thumb { height: 180px; display: flex; align-items: flex-end; padding: 1rem; }
+.blog-thumb.t1 { background: linear-gradient(135deg, #dce8f5, #c0d4ec); }
+.blog-thumb.t2 { background: linear-gradient(135deg, #ebe8f5, #d0c8ec); }
+.blog-thumb.t3 { background: linear-gradient(135deg, #f5e8e0, #ecd0b8); }
+.blog-thumb.t4 { background: linear-gradient(135deg, #d8ede5, #b8d8c8); }
+.blog-badge { font-size: 10px; padding: 4px 10px; background: white; border-radius: 99px; color: var(--muted); font-weight: 500; }
+.blog-body { padding: 1.25rem; }
+.blog-date { font-size: 11px; color: var(--muted); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.06em; }
+.blog-title { font-family: var(--serif); font-size: 1.1rem; color: var(--black); line-height: 1.3; margin-bottom: 0.5rem; }
+.blog-excerpt { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+/* ── SUBSCRIPTION ── */
+.sub-section { max-width: 620px; margin: 0 auto; padding: 5rem 2rem; text-align: center; }
+.sub-icon { width: 64px; height: 64px; background: var(--accent-light); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 1.75rem; }
+.sub-title { font-family: var(--serif); font-size: 2.5rem; color: var(--black); margin-bottom: 1rem; }
+.sub-desc { font-size: 16px; color: var(--muted); margin-bottom: 2.5rem; }
+.sub-form { display: flex; gap: 10px; max-width: 440px; margin: 0 auto 1rem; }
+.sub-form input { flex: 1; padding: 14px 18px; border: 1px solid var(--border); border-radius: 99px; font-family: var(--sans); font-size: 14px; background: white; color: var(--black); outline: none; transition: border-color 0.2s; }
+.sub-form input:focus { border-color: var(--black); }
+.sub-form button { padding: 14px 24px; background: var(--black); color: var(--white); border: none; border-radius: 99px; font-family: var(--sans); font-size: 14px; font-weight: 500; cursor: pointer; transition: background 0.2s; white-space: nowrap; }
+.sub-form button:hover { background: var(--accent); }
+.sub-fine { font-size: 12px; color: var(--muted); }
+.sub-perks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 3rem; text-align: left; }
+.sub-perk { background: var(--cream); border-radius: 12px; padding: 1.25rem; border: 0.5px solid var(--border); }
+.sub-perk-icon { font-size: 1.25rem; margin-bottom: 8px; }
+.sub-perk-title { font-weight: 500; font-size: 14px; color: var(--black); margin-bottom: 4px; }
+.sub-perk-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+/* ── CONTACT ── */
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+.contact-info h2 { font-family: var(--serif); font-size: 2rem; color: var(--black); margin-bottom: 1rem; }
+.contact-info p { font-size: 15px; color: var(--muted); line-height: 1.7; margin-bottom: 2rem; }
+.contact-links { display: flex; flex-direction: column; gap: 12px; }
+.contact-link { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--black); font-size: 14px; padding: 12px 16px; border: 0.5px solid var(--border); border-radius: 10px; background: var(--cream); transition: all 0.2s; }
+.contact-link:hover { border-color: var(--accent); background: var(--accent-light); }
+.contact-link span { color: var(--muted); font-size: 12px; margin-left: auto; }
+.contact-form { display: flex; flex-direction: column; gap: 14px; }
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-group label { font-size: 12px; font-weight: 500; color: var(--black); text-transform: uppercase; letter-spacing: 0.06em; }
+.form-group input, .form-group textarea {
+  padding: 12px 16px; border: 1px solid var(--border);
+  border-radius: 10px; font-family: var(--sans); font-size: 14px;
+  background: var(--cream); color: var(--black); outline: none;
+  transition: border-color 0.2s; resize: none;
+}
+.form-group input:focus, .form-group textarea:focus { border-color: var(--black); background: white; }
+.form-submit { padding: 14px; background: var(--black); color: var(--white); border: none; border-radius: 10px; font-family: var(--sans); font-size: 14px; font-weight: 500; cursor: pointer; transition: background 0.2s; }
+.form-submit:hover { background: var(--accent); }
+
+/* ── FOOTER ── */
+footer {
+  border-top: 0.5px solid var(--border); padding: 2rem 3rem;
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 13px; color: var(--muted);
+}
+footer a { color: var(--muted); text-decoration: none; }
+footer a:hover { color: var(--black); }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+.page.active .section, .page.active .hero-left, .page.active .hero-right { animation: fadeUp 0.4s ease both; }
+.page.active .hero-right { animation-delay: 0.1s; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { display: none; }
+  .hero { grid-template-columns: 1fr; padding: 1.5rem; gap: 2rem; }
+  .hero-right { display: none; }
+  .case-item { grid-template-columns: 1fr; }
+  .case-thumb { min-height: 160px; }
+  .case-info { border-left: none; border-top: 0.5px solid var(--border); }
+  .about-grid, .contact-grid { grid-template-columns: 1fr; }
+  .detail-highlights { grid-template-columns: 1fr 1fr; }
+  .sub-perks { grid-template-columns: 1fr; }
+  .detail-screens { flex-direction: column; align-items: center; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#" onclick="showPage('home')">AK.</a>
+  <ul class="nav-links">
+    <li><a href="#" onclick="showPage('home')" id="nav-home" class="active">Home</a></li>
+    <li><a href="#" onclick="showPage('work')" id="nav-work">Work</a></li>
+    <li><a href="#" onclick="showPage('about')" id="nav-about">About</a></li>
+    <li><a href="#" onclick="showPage('blog')" id="nav-blog">Blog</a></li>
+    <li><a href="#" onclick="showPage('contact')" id="nav-contact">Contact</a></li>
+  </ul>
+  <a href="#" class="nav-cta" onclick="showPage('contact')">Hire me</a>
+</nav>
+
+<!-- ═══ HOME ═══ -->
+<div id="home" class="page active">
+  <div class="hero">
+    <div class="hero-left">
+      <p class="hero-eyebrow">UI/UX Designer</p>
+      <h1 class="hero-headline">Designing <em>interfaces</em> people actually love</h1>
+      <p class="hero-sub">I'm a product designer with experience across SaaS, e-commerce, and fashion tech — specialising in research-led design, component systems, and seamless interactions.</p>
+      <div class="hero-btns">
+        <a href="#" class="btn-primary" onclick="showPage('work')">View my work</a>
+        <a href="#" class="btn-secondary" onclick="showPage('about')">About me</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <a href="#" class="hero-card" onclick="showCase('iresh')">
+        <p class="hero-card-label">Iresh Technologies</p>
+        <p class="hero-card-title">Enterprise dashboard redesign</p>
+        <p class="hero-card-meta">SaaS · 2026</p>
+        <div class="hero-card-tags">
+          <span class="mini-tag">Wireframes</span>
+          <span class="mini-tag">Design system</span>
+          <span class="mini-tag">Before/after</span>
+        </div>
+      </a>
+      <a href="#" class="hero-card" onclick="showCase('fashion')">
+        <p class="hero-card-label">Fashion Index</p>
+        <p class="hero-card-title">E-commerce UX & subscription flow</p>
+        <p class="hero-card-meta">Fashion Tech · 2025</p>
+        <div class="hero-card-tags">
+          <span class="mini-tag">Subscription page</span>
+          <span class="mini-tag">Prototypes</span>
+          <span class="mini-tag">User flows</span>
+        </div>
+      </a>
+      <a href="#" class="hero-card" onclick="showCase('plasmid')">
+        <p class="hero-card-label">Plasmid</p>
+        <p class="hero-card-title">SaaS component library & blog</p>
+        <p class="hero-card-meta">Product · 2024</p>
+        <div class="hero-card-tags">
+          <span class="mini-tag">About page</span>
+          <span class="mini-tag">Blog pages</span>
+          <span class="mini-tag">Components</span>
+        </div>
+      </a>
+      <div class="hero-stats">
+        <div class="stat-item"><div class="stat-n">3</div><div class="stat-l">Companies</div></div>
+        <div class="stat-item"><div class="stat-n">5+</div><div class="stat-l">Page types</div></div>
+        <div class="stat-item"><div class="stat-n">Full</div><div class="stat-l">Stack UX</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ WORK ═══ -->
+<div id="work" class="page">
+  <div class="section">
+    <div class="section-header">
+      <p class="section-eyebrow">Selected work</p>
+      <h2 class="section-title">Case studies</h2>
+      <p class="section-sub">Research-led design projects across enterprise software, fashion tech, and SaaS products.</p>
+    </div>
+    <div class="cases-grid">
+
+      <a href="#" class="case-item" onclick="showCase('iresh')">
+        <div class="case-thumb blue">
+          <div class="thumb-mockup">
+            <div class="thumb-bar" style="background:#378ADD;width:80%"></div>
+            <div class="thumb-bar" style="background:#D3D1C7;width:55%"></div>
+            <div class="thumb-grid">
+              <div class="thumb-block" style="background:#E6F1FB"></div>
+              <div class="thumb-block" style="background:#378ADD"></div>
+              <div class="thumb-block" style="background:#E6F1FB"></div>
+              <div class="thumb-block" style="background:#E6F1FB"></div>
+            </div>
+            <div class="thumb-bar" style="background:#D3D1C7;width:70%"></div>
+          </div>
+        </div>
+        <div class="case-info">
+          <div>
+            <p class="case-company">Iresh Technologies</p>
+            <h2 class="case-name">Enterprise dashboard redesign</h2>
+            <p class="case-desc">Redesigned a data-heavy SaaS dashboard — improving information hierarchy, reducing cognitive load, and building a scalable component library used by 3 product teams.</p>
+            <div class="case-tags">
+              <span class="ctag w">Wireframes</span>
+              <span class="ctag s">Design system</span>
+              <span class="ctag r">User research</span>
+              <span class="ctag b">Before / after</span>
+            </div>
+          </div>
+          <p class="case-arrow">View case study →</p>
+        </div>
+      </a>
+
+      <a href="#" class="case-item" onclick="showCase('fashion')">
+        <div class="case-thumb pink">
+          <div class="thumb-mockup">
+            <div class="thumb-bar" style="background:#D4537E;width:90%"></div>
+            <div class="thumb-block" style="background:#F4C0D1;height:36px;border-radius:5px;width:100%"></div>
+            <div class="thumb-bar" style="background:#D4537E;width:65%"></div>
+            <div class="thumb-bar" style="background:#D3D1C7;width:45%"></div>
+          </div>
+        </div>
+        <div class="case-info">
+          <div>
+            <p class="case-company">Fashion Index</p>
+            <h2 class="case-name">E-commerce UX & subscription page</h2>
+            <p class="case-desc">Led UX for a fashion discovery platform — from user journey mapping to high-fidelity prototypes for the subscription page, about page, and mobile checkout flows.</p>
+            <div class="case-tags">
+              <span class="ctag r">User flows</span>
+              <span class="ctag p">Prototypes</span>
+              <span class="ctag w">Wireframes</span>
+              <span class="ctag b">Before / after</span>
+            </div>
+          </div>
+          <p class="case-arrow">View case study →</p>
+        </div>
+      </a>
+
+      <a href="#" class="case-item" onclick="showCase('plasmid')">
+        <div class="case-thumb green">
+          <div class="thumb-mockup">
+            <div class="thumb-bar" style="background:#1D9E75;width:75%"></div>
+            <div class="thumb-bar" style="background:#9FE1CB;width:55%"></div>
+            <div class="thumb-grid">
+              <div class="thumb-block" style="background:#1D9E75"></div>
+              <div class="thumb-block" style="background:#E1F5EE"></div>
+            </div>
+            <div class="thumb-bar" style="background:#D3D1C7;width:60%"></div>
+          </div>
+        </div>
+        <div class="case-info">
+          <div>
+            <p class="case-company">Plasmid</p>
+            <h2 class="case-name">SaaS blog, about page & component library</h2>
+            <p class="case-desc">Designed a consistent design language across a SaaS product — interactive prototypes, blog page layouts, about page, and a component library to align design and engineering.</p>
+            <div class="case-tags">
+              <span class="ctag s">Component library</span>
+              <span class="ctag p">Interactions</span>
+              <span class="ctag r">User flows</span>
+            </div>
+          </div>
+          <p class="case-arrow">View case study →</p>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CASE DETAIL ═══ -->
+<div id="case-detail" class="page">
+  <div class="case-detail-inner">
+    <p class="back-btn" onclick="goBack()">← Back to work</p>
+    <div id="case-detail-content"></div>
+  </div>
+</div>
+
+<!-- ═══ ABOUT ═══ -->
+<div id="about" class="page">
+  <div class="section">
+    <div class="about-grid">
+      <div>
+        <div class="about-photo">
+          <div class="about-photo-inner">AK</div>
+        </div>
+      </div>
+      <div class="about-text">
+        <h2>Designing with purpose, curiosity, and craft</h2>
+        <p>Hi, I'm a UI/UX designer with a background spanning enterprise SaaS, fashion e-commerce, and product startups. I believe great design is invisible — it simply feels right.</p>
+        <p>My process is rooted in research. I don't guess at what users need — I observe, map, test, and iterate. Whether it's a subscription page, a blog layout, or a full design system, every decision is traceable to a real insight.</p>
+        <p>I've had the opportunity to contribute to design at Iresh Technologies, Fashion Index, and Plasmid — helping ship subscription pages, about pages, blog pages, component libraries, and end-to-end product flows.</p>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-year">2023 – now</div>
+            <div class="timeline-info"><h4>Iresh Technologies</h4><p>UI/UX Designer — enterprise dashboard redesign, design system</p></div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2022 – 2023</div>
+            <div class="timeline-info"><h4>Fashion Index</h4><p>Product Designer — subscription, about & e-commerce UX</p></div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2021 – 2022</div>
+            <div class="timeline-info"><h4>Plasmid</h4><p>UX Designer — blog pages, component library, SaaS product</p></div>
+          </div>
+        </div>
+
+        <div class="skills-section">
+          <h3 class="skills-title">Skills & tools</h3>
+          <div class="skills-list">
+            <span class="skill-pill">Figma</span>
+            <span class="skill-pill">Wireframing</span>
+            <span class="skill-pill">Prototyping</span>
+            <span class="skill-pill">User research</span>
+            <span class="skill-pill">Design systems</span>
+            <span class="skill-pill">Before / after</span>
+            <span class="skill-pill">Interaction design</span>
+            <span class="skill-pill">Component libraries</span>
+            <span class="skill-pill">Usability testing</span>
+            <span class="skill-pill">User flows</span>
+            <span class="skill-pill">FigJam</span>
+            <span class="skill-pill">Maze</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Subscription CTA -->
+    <div style="margin-top:4rem; padding-top:3rem; border-top:0.5px solid var(--border);">
+      <div class="sub-section" style="padding:3rem 0 0;">
+        <div class="sub-icon">✉</div>
+        <h2 class="sub-title">Stay in the loop</h2>
+        <p class="sub-desc">Get design notes, case study updates, and UX insights delivered to your inbox. No spam — just thoughtful content when it's ready.</p>
+        <div class="sub-form">
+          <input type="email" placeholder="aksh35000@email.com" />
+          <button onclick="handleSub(this)">Subscribe</button>
+        </div>
+        <p class="sub-fine">Unsubscribe anytime. No spam, ever.</p>
+        <div class="sub-perks">
+          <div class="sub-perk"><div class="sub-perk-icon">🎨</div><div class="sub-perk-title">Design breakdowns</div><div class="sub-perk-desc">How I approach real problems</div></div>
+          <div class="sub-perk"><div class="sub-perk-icon">📐</div><div class="sub-perk-title">Case study extras</div><div class="sub-perk-desc">Behind-the-scenes process notes</div></div>
+          <div class="sub-perk"><div class="sub-perk-icon">💡</div><div class="sub-perk-title">UX tips & tools</div><div class="sub-perk-desc">What's working in my workflow</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ BLOG ═══ -->
+<div id="blog" class="page">
+  <div class="section">
+    <div class="section-header">
+      <p class="section-eyebrow">Writing</p>
+      <h2 class="section-title">Design notes & thoughts</h2>
+      <p class="section-sub">Essays on process, tools, and the craft of designing useful things.</p>
+    </div>
+    <div class="blog-grid">
+      <a href="#" class="blog-card">
+        <div class="blog-thumb t1"><span class="blog-badge">Process</span></div>
+        <div class="blog-body">
+          <p class="blog-date">March 2024</p>
+          <h3 class="blog-title">Why I always start with a user flow, not a wireframe</h3>
+          <p class="blog-excerpt">Most designers reach for Figma first. Here's why I've stopped doing that — and what changed when I didn't.</p>
+        </div>
+      </a>
+      <a href="#" class="blog-card">
+        <div class="blog-thumb t2"><span class="blog-badge">Design systems</span></div>
+        <div class="blog-body">
+          <p class="blog-date">Feb 2024</p>
+          <h3 class="blog-title">Building a component library that engineers will actually use</h3>
+          <p class="blog-excerpt">The gap between design systems and production code is real. Here's how I've bridged it at Plasmid.</p>
+        </div>
+      </a>
+      <a href="#" class="blog-card">
+        <div class="blog-thumb t3"><span class="blog-badge">E-commerce</span></div>
+        <div class="blog-body">
+          <p class="blog-date">Jan 2024</p>
+          <h3 class="blog-title">What makes a subscription page convert? Lessons from Fashion Index</h3>
+          <p class="blog-excerpt">Three months of iterations, two rounds of user testing, and one key insight that changed everything.</p>
+        </div>
+      </a>
+      <a href="#" class="blog-card">
+        <div class="blog-thumb t4"><span class="blog-badge">Research</span></div>
+        <div class="blog-body">
+          <p class="blog-date">Dec 2023</p>
+          <h3 class="blog-title">How to run a 20-minute usability test that actually tells you something</h3>
+          <p class="blog-excerpt">You don't need a lab or 50 participants. You need the right questions and a quiet room.</p>
+        </div>
+      </a>
+    </div>
+
+    <!-- Blog subscribe -->
+    <div style="margin-top:4rem; background:var(--cream); border-radius:20px; padding:3rem; border:0.5px solid var(--border); text-align:center;">
+      <p style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--accent);margin-bottom:0.75rem;">Never miss a post</p>
+      <h3 style="font-family:var(--serif);font-size:1.8rem;margin-bottom:0.75rem;">Get new articles in your inbox</h3>
+      <p style="font-size:15px;color:var(--muted);margin-bottom:1.5rem;">New posts every few weeks — design process, UX craft, and case study extras.</p>
+      <div class="sub-form" style="margin:0 auto;">
+        <input type="email" placeholder="aksh35000@email.com" />
+        <button onclick="handleSub(this)">Subscribe</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ CONTACT ═══ -->
+<div id="contact" class="page">
+  <div class="section">
+    <div class="section-header">
+      <p class="section-eyebrow">Get in touch</p>
+      <h2 class="section-title">Let's work together</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <p>I'm open to freelance projects, full-time roles, and collaborations. If you need a designer who can go from research to polished prototype — let's talk.</p>
+        <div class="contact-links">
+          <a href="mailto:aksh35000@gmail.com" class="contact-link">✉ aksh35000@gmail.com <span>Email</span></a>
+          <a href="#" class="contact-link">💼 www.linkedin.com/in/akshitha-chapalamadugu <span>LinkedIn</span></a>
+        </div>
+      </div>
+      <div>
+        <div class="contact-form">
+          <div class="form-group">
+            <label>Name</label>
+            <input type="text" placeholder="AKSHITHA CHAPALAMADUGU" />
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="aksh35000@email.com" />
+          </div>
+          <div class="form-group">
+            <label>Project type</label>
+            <input type="text" placeholder="e.g. Website redesign, SaaS product…" />
+          </div>
+          <div class="form-group">
+            <label>Message</label>
+            <textarea rows="5" placeholder="Tell me about your project…"></textarea>
+          </div>
+          <button class="form-submit" onclick="handleContact(this)">Send message</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span>© 2024 AKSHITHA CHAPALAMADUGU · UI/UX Designer</span>
+  <div style="display:flex;gap:1.5rem;">
+    <a href="#" onclick="showPage('work')">Work</a>
+    <a href="#" onclick="showPage('about')">About</a>
+    <a href="#" onclick="showPage('blog')">Blog</a>
+    <a href="#" onclick="showPage('contact')">Contact</a>
+  </div>
+</footer>
+
+<script>
+const caseData = {
+  iresh: {
+    company: 'Iresh Technologies',
+    title: 'Enterprise dashboard redesign',
+    year: '2023', role: 'UI/UX Designer', duration: '4 months', tool: 'Figma + FigJam',
+    color: 'blue',
+    problem: 'The existing dashboard was built by engineers without design input — a dense, confusing interface where users struggled to find key metrics and frequently made errors. Onboarding new users took over 3 weeks.',
+    research: 'Conducted 8 stakeholder interviews and 12 user sessions. Mapped the full task flow using FigJam. Identified 3 critical pain points: information overload, unclear data hierarchy, and no consistent interaction patterns across modules.',
+    process: 'Started with lo-fi wireframes to test layout before touching visuals. Built a component library of 40+ reusable elements. Created before/after comparisons for each screen to communicate design rationale to stakeholders.',
+    outcome: 'Redesigned dashboard reduced average task completion time by 38%. Onboarding time dropped from 3 weeks to 6 days. Component library adopted by 3 product teams.',
+    pages: ['Dashboard overview', 'Analytics module', 'Settings & permissions', 'Onboarding flow', 'Component library docs'],
+    stats: [{ n: '38%', l: 'Faster task completion' }, { n: '40+', l: 'Components built' }, { n: '3', l: 'Teams adopted system' }]
+  },
+  fashion: {
+    company: 'Fashion Index',
+    title: 'E-commerce UX & subscription page',
+    year: '2022–2023', role: 'Product Designer', duration: '6 months', tool: 'Figma + Maze',
+    color: 'pink',
+    problem: 'Fashion Index had a 72% drop-off on the subscription page and no clear value proposition on the about page. The checkout flow was designed for desktop and broken on mobile.',
+    research: 'Ran competitive analysis across 6 fashion subscription services. Conducted 15 user interviews and 3 rounds of prototype testing via Maze. Created user journey maps for the discovery-to-subscribe flow.',
+    process: 'Redesigned the subscription page with clear pricing tiers, social proof, and a simplified CTA. Rebuilt the about page around storytelling and brand trust signals. Prototyped 3 variations of mobile checkout and tested each.',
+    outcome: 'Subscription page conversion improved significantly after redesign. Mobile checkout completion rate increased after flow simplification. About page bounce rate reduced.',
+    pages: ['Subscription / pricing page', 'About page', 'Mobile checkout flow', 'Product discovery', 'User onboarding'],
+    stats: [{ n: '↑', l: 'Subscription conversion' }, { n: '3', l: 'Prototype iterations' }, { n: '15', l: 'User interviews' }]
+  },
+  plasmid: {
+    company: 'Plasmid',
+    title: 'SaaS blog, about page & component library',
+    year: '2021–2022', role: 'UX Designer', duration: '8 months', tool: 'Figma + Notion',
+    color: 'green',
+    problem: 'Plasmid had no design system — every feature was styled differently, creating inconsistency across the product. The marketing site (blog, about) had no visual identity and felt disconnected from the app.',
+    research: 'Audited the existing product and identified 120+ inconsistent UI patterns. Ran stakeholder workshops to align on brand values. Mapped user flows for the blog, about, and core app screens.',
+    process: 'Built a design system from scratch: typography scale, colour tokens, spacing system, and 60+ components. Designed blog page templates with editorial flexibility. Created an about page that communicates mission and team.',
+    outcome: 'Design system cut design-to-dev handoff time significantly. Blog templates used for 20+ articles. About page redesign improved brand clarity and investor perception.',
+    pages: ['Blog article template', 'Blog index / listing', 'About page', 'Team & culture section', 'Component documentation'],
+    stats: [{ n: '60+', l: 'Components documented' }, { n: '20+', l: 'Blog pages designed' }, { n: '↓', l: 'Handoff time reduced' }]
+  }
+};
+
+let previousPage = 'work';
+
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const navEl = document.getElementById('nav-' + id);
+  if (navEl) navEl.classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function showCase(id) {
+  previousPage = document.querySelector('.page.active')?.id || 'work';
+  const d = caseData[id];
+  document.getElementById('case-detail-content').innerHTML = `
+    <p class="detail-hero-badge">${d.company}</p>
+    <h1 class="detail-title">${d.title}</h1>
+    <div class="detail-meta">
+      <div class="detail-meta-item"><strong>Year</strong>${d.year}</div>
+      <div class="detail-meta-item"><strong>Role</strong>${d.role}</div>
+      <div class="detail-meta-item"><strong>Duration</strong>${d.duration}</div>
+      <div class="detail-meta-item"><strong>Tools</strong>${d.tool}</div>
+    </div>
+    <div class="detail-cover ${d.color}">
+      <div class="detail-screens">
+        <div class="screen" style="width:140px">
+          <div class="screen-bar" style="background:${d.color==='blue'?'#378ADD':d.color==='pink'?'#D4537E':'#1D9E75'};width:80%"></div>
+          <div class="screen-row"><div class="screen-block" style="background:${d.color==='blue'?'#E6F1FB':d.color==='pink'?'#F4C0D1':'#9FE1CB'}"></div><div class="screen-block" style="background:${d.color==='blue'?'#378ADD':d.color==='pink'?'#D4537E':'#1D9E75'};flex:0.6"></div></div>
+          <div class="screen-bar" style="background:#D3D1C7;width:60%"></div>
+          <div class="screen-bar" style="background:#D3D1C7;width:40%"></div>
+        </div>
+        <div class="screen" style="width:110px">
+          <div class="screen-bar" style="background:${d.color==='blue'?'#378ADD':d.color==='pink'?'#D4537E':'#1D9E75'};width:90%"></div>
+          <div class="screen-block" style="background:${d.color==='blue'?'#E6F1FB':d.color==='pink'?'#F4C0D1':'#D8EDE5'};height:40px;border-radius:5px"></div>
+          <div class="screen-bar" style="background:#D3D1C7;width:70%"></div>
+        </div>
+      </div>
+    </div>
+    <div class="detail-highlights">
+      ${d.stats.map(s=>`<div class="highlight"><div class="highlight-num">${s.n}</div><div class="highlight-label">${s.l}</div></div>`).join('')}
+    </div>
+    <div class="detail-section"><h3>The problem</h3><p>${d.problem}</p></div>
+    <div class="detail-section"><h3>Research & discovery</h3><p>${d.research}</p></div>
+    <div class="detail-section"><h3>Design process</h3><p>${d.process}</p></div>
+    <div class="detail-section"><h3>Outcomes</h3><p>${d.outcome}</p></div>
+    <div class="detail-section">
+      <h3>Pages designed</h3>
+      <div class="detail-pages">${d.pages.map(p=>`<div class="dpage">${p}</div>`).join('')}</div>
+    </div>
+  `;
+  showPage('case-detail');
+  document.getElementById('nav-work').classList.add('active');
+  return false;
+}
+
+function goBack() {
+  showPage(previousPage);
+}
+
+function handleSub(btn) {
+  btn.textContent = 'Subscribed ✓';
+  btn.style.background = '#1D9E75';
+  setTimeout(() => { btn.textContent = 'Subscribe'; btn.style.background = ''; }, 3000);
+}
+
+function handleContact(btn) {
+  btn.textContent = 'Message sent ✓';
+  btn.style.background = '#1D9E75';
+  setTimeout(() => { btn.textContent = 'Send message'; btn.style.background = ''; }, 3000);
+}
+</script>
+</body>
+</html>
